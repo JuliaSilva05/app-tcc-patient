@@ -44,6 +44,7 @@ const Login = () => {
       <KeyboardAwareScrollView
         contentContainerClassName="flex-1 justify-evenly"
       >
+        <Text className="text-red-500">aaaaaaaaaa</Text>
           <View className="w-full gap-6">
 
             <View className="gap-1">
@@ -87,11 +88,11 @@ const Login = () => {
           
           <View className="gap-3 items-center">
             <Pressable
-              className="border-[2px] border-sky-900 rounded-[32px] px-12 py-4 bg-sky-300" 
+              className="border-[2px] border-sky-900 rounded-full px-12 py-4 bg-sky-300" 
               onPress={handleSubmit}
               disabled={isLoading}
             >
-              <Text className="text-xl text-sky-900 font-medium">ENTRAR</Text>
+              <Text className="text-xl text-sky-900 font-semibold">ENTRAR</Text>
             </Pressable>
 
             <Text className="text-lg text-sky-900">

@@ -23,11 +23,12 @@ const options = [
 //     icon: "format-list-numbered",
 //     link: "/",
 //   },
-  // {
-  //   id: "4",
-  //   title: "Configurações",
-  //   icon: "settings",
-  // },
+  {
+    id: "4",
+    title: "Configurações",
+    icon: "settings",
+    link: "/",
+  },
 ]
 
 function createRows(data: any[], columns: number) {
