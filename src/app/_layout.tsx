@@ -24,6 +24,7 @@ function RootNavigator() {
         }}
       >
         <Stack.Protected guard={!session}>
+          <Stack.Screen name="index" options={{title: "Login", headerTitleAlign: "center"}}/>
           <Stack.Screen name="Login" options={{title: "Login", headerTitleAlign: "center"}}/>
           <Stack.Screen name="Register" options={{title: "Cadastrar", headerTitleAlign: "center"}}/>
         </Stack.Protected>

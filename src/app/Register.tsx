@@ -105,11 +105,11 @@ const Register = () => {
         </View>
         
         <Pressable
-          className="border-[2px] border-sky-900 rounded-[32px] px-12 py-4 bg-sky-300" 
+          className="border-[2px] border-sky-900 rounded-full px-12 py-4 bg-sky-300" 
           onPress={handleSubmit}
           disabled={isLoading}
         >
-          <Text className="text-xl text-sky-900 font-medium">CADASTRAR</Text>
+          <Text className="text-xl text-sky-900 font-semibold">CADASTRAR</Text>
         </Pressable>
 
       </KeyboardAwareScrollView>
