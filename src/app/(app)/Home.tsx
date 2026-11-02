@@ -1,15 +1,20 @@
 import { useSession } from "@/context/ctx";
+import axiosInstance from "@/services/apiConfig";
 import MaterialIcons, { MaterialIconsIconName } from "@react-native-vector-icons/material-icons";
 import { Link, RelativePathString, router } from "expo-router";
+import { useState, useEffect } from "react";
 import { View, Text, FlatList, Pressable, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { Badge } from 'react-native-elements';
+
 const options = [
   {
-    id: "1",
+    id: "pt-home-therapists",
     title: "Terapeutas",
     icon: "supervisor-account",
     link: "/Therapists",
+    badge: true,
   },
 //   {
 //     id: "2",
@@ -24,7 +29,7 @@ const options = [
 //     link: "/",
 //   },
   {
-    id: "4",
+    id: "pt-home-configs",
     title: "Configurações",
     icon: "settings",
     link: "/",
@@ -44,10 +49,40 @@ function createRows(data: any[], columns: number) {
 }
 
 const Home = () => {
-  const { signOut } = useSession();
+  const { user, session, signOut } = useSession();
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [pendingReqs, setPendingReqs] = useState(0);
+
+  useEffect(() => {
+    const getPatients = async () => {
+      try {
+        setIsLoading(true);
+        const user_id = JSON.parse(user)._id;
+        console.log('aaaaa')
+
+        const { data } = await axiosInstance.get(`/api/get-pending-therapists/${user_id}`, {
+          // params: { patientId: user_id },
+        });
+
+        console.log(data)
+        
+        setPendingReqs(data?.therapistsCount);
+      } catch(e) {
+        console.error(e);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    getPatients();
+  }, []);
   
   return (
     <SafeAreaView>
+        <Text>{user}</Text>
+        <Text className="justify-center">{pendingReqs}</Text>
       <Button title="logout-wip" onPress={() => signOut()} />
       <FlatList 
         data={createRows(options, 2)}
@@ -64,6 +99,29 @@ const Home = () => {
                 <>
                   <MaterialIcons name={item.icon} color={"#FFFFFF"} size={90} />
                   <Text className="text-white text-2xl">{item.title}</Text>
+
+                {item.badge && pendingReqs && pendingReqs !== 0 ? (
+                    <Badge 
+                      value={
+                        <Text className="text-white text-lg">
+                          {pendingReqs}
+                        </Text>
+                      } 
+                      containerStyle={{
+                        position: "absolute",
+                        top: -4,
+                        right: -4,
+                      }}
+                      badgeStyle={{
+                        backgroundColor: "#06496D",
+                        borderColor: "#06496D",
+                        height: 30,
+                        minWidth: 30,
+                        borderRadius: 100,
+                        paddingHorizontal: 5,
+                      }}
+                    />
+                ) : null}
                 </>
               ) : null}
             </Pressable>

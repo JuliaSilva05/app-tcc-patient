@@ -2,6 +2,23 @@ import MaterialIcons from '@react-native-vector-icons/material-icons';
 import { router, Stack } from 'expo-router';
 import { Pressable, TouchableOpacity } from 'react-native';
 
+const homeHeaderIcon = {
+  headerRight: () => (
+    <Pressable onPress={() => router.dismissAll()}>
+      <MaterialIcons name='home-filled' color={"#FFFFFF"} size={25}/>
+    </Pressable>
+  ),
+}
+
+const notificationHeaderIcon = {
+  headerRight: () => (
+    <Pressable onPress={() => {}}>
+      <MaterialIcons name='notifications-active' color={"#FFFFFF"} size={25}/>
+    </Pressable>
+  ),
+}
+
+
 export default function AppLayout() {
   // This renders the navigation stack for all authenticated app routes.
   return (
@@ -18,11 +35,7 @@ export default function AppLayout() {
         options={{
           title: "Terapeutas", 
           headerTitleAlign: "center",
-          headerRight: () => (
-            <Pressable onPress={() => router.dismissAll()}>
-              <MaterialIcons name='home-filled' color={"#FFFFFF"} size={25}/>
-            </Pressable>
-          ),
+          ...homeHeaderIcon,
         }}
       />
     </Stack>
