@@ -109,8 +109,6 @@ export default function TherapistsList({therapists}:{therapists: Therapists[]}) 
         const statusInfo = STATUSES[`${item.status}`];
         
         const [isOpen, setIsOpen] = useState(false);
-        const [newStatus, setNewStatus] = useState('');
-        const [modalVisible, setModalVisible] = useState(false);
 
         return (
           <>
