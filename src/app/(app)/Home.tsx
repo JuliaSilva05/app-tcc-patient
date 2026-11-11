@@ -16,18 +16,12 @@ const options = [
     link: "/Therapists",
     badge: true,
   },
-//   {
-//     id: "2",
-//     title: "Atividades",
-//     icon: "add-task",
-//     link: "/",
-//   },
-//   {
-//     id: "3",
-//     title: "Sequências",
-//     icon: "format-list-numbered",
-//     link: "/",
-//   },
+  {
+    id: "pt-home-activities",
+    title: "Atividades",
+    icon: "format-list-numbered",
+    link: "/Activities",
+  },
   {
     id: "pt-home-configs",
     title: "Configurações",
@@ -49,7 +43,7 @@ function createRows(data: any[], columns: number) {
 }
 
 const Home = () => {
-  const { user, session, signOut } = useSession();
+  const { user, signOut } = useSession();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -59,6 +53,7 @@ const Home = () => {
     const getPatients = async () => {
       try {
         setIsLoading(true);
+        //@ts-ignore
         const user_id = JSON.parse(user)._id;
         console.log('aaaaa')
 

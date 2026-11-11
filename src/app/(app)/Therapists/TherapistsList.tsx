@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Divider } from "react-native-elements";
 import axiosInstance from "@/services/apiConfig";
 import { useSession } from "@/context/ctx";
+import Accordion from "react-native-collapsible/Accordion";
 const mock = [
   {
     _id: "1",
@@ -78,6 +79,7 @@ export default function TherapistsList({therapists}:{therapists: Therapists[]}) 
   const location = usePathname();
   const { user } = useSession();
   const [isLoading, setIsLoading] = useState(false);
+  const [activeSections, setActiveSections] = useState([]);
 
   const handleResponse = async (option: string, linkId: string) => {
     try {

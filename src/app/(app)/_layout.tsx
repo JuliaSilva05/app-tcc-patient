@@ -38,6 +38,20 @@ export default function AppLayout() {
           ...homeHeaderIcon,
         }}
       />
+      <Stack.Screen name="Activities/index" 
+        options={{
+          title: "Atividades", 
+          headerTitleAlign: "center",
+          ...homeHeaderIcon,
+        }}
+      />
+      <Stack.Screen name="Activities/Activity" 
+        options={{
+          title: "Atividade", 
+          headerTitleAlign: "center",
+          ...homeHeaderIcon,
+        }}
+      />
     </Stack>
   );
 };
