@@ -46,9 +46,11 @@ export default function Activities () {
     <SafeAreaView>
       <KeyboardAwareScrollView contentContainerClassName="gap-3">
         {isLoading ? (
-          <Host>
-            <CircularProgressIndicator />
-          </Host>
+          <View className="items-center">
+            <Host matchContents>
+              <CircularProgressIndicator />
+            </Host>
+          </View>
         ) : (
           <>
             {activities && activities?.length ? (

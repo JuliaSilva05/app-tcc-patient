@@ -7,16 +7,41 @@ import Accordion from "react-native-collapsible/Accordion";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Moment from 'moment';
 
-type Assignment = {
-  _id: string;
+interface Statuses {
+  [key: string]: {
+    label: string;
+    color: string;
+  }
 }
 
-export default function PatientsList({activities}:{activities: any[]}) {
+const STATUSES: Statuses = {
+  pending: {
+    label: "Pendente",
+    color: "#FF8D28",
+  },
+  submitted: {
+    label: "Esperando correção",
+    color: "#34C759",
+  },
+  done: {
+    label: "Feito",
+    color: "#000000",
+  },
+  not_done: {
+    label: "Refazer",
+    color: "#FF383C",
+  },
+};
+
+export default function ActivitiesList({activities}:{activities: any[]}) {
   const { user } = useSession();
-  const user_id = JSON.parse(user)._id
+  //@ts-ignore
+  const user_id = JSON.parse(user)._id;
+
   return (
     <SafeAreaView>
       {activities.map(item => {
+        const statusInfo = STATUSES[`${item.status}`];
         return (
           <>
             <Pressable 
@@ -46,6 +71,12 @@ export default function PatientsList({activities}:{activities: any[]}) {
                   <View className="flex-1 flex-row justify-between">
                     <Text className="text-sm">
                       <Text className="font-medium">Enviado por: </Text>{item.therapistDisplayName}
+                    </Text> 
+                    
+                  </View>
+                  <View className="flex-1 flex-row justify-between">
+                    <Text className="text-sm">
+                      <Text className="font-medium">Status: </Text>{statusInfo.label}
                     </Text> 
                     
                   </View>
