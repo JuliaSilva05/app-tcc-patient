@@ -76,8 +76,8 @@ const Home = () => {
   
   return (
     <SafeAreaView>
-        <Text>{user}</Text>
-        <Text className="justify-center">{pendingReqs}</Text>
+        {/* <Text>{user}</Text> */}
+        {/* <Text className="justify-center">{pendingReqs}</Text> */}
       <Button title="logout-wip" onPress={() => signOut()} />
       <FlatList 
         data={createRows(options, 2)}
